@@ -1,5 +1,5 @@
 import { pgTable, serial, text, timestamp, boolean, primaryKey, integer } from "drizzle-orm/pg-core";
-import type { AdapterAccountType } from "next-auth/adapters";
+
 
 // Waitlist Table: Stores email submissions from the coming-soon page.
 // The email column has a unique constraint to prevent duplicate subscriptions.
@@ -23,7 +23,7 @@ export const users = pgTable("user", {
 // Auth.js Accounts Table: Links OAuth accounts (Google) to users.
 export const accounts = pgTable("account", {
   userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
-  type: text("type").$type<AdapterAccountType>().notNull(),
+  type: text("type").notNull(),
   provider: text("provider").notNull(),
   providerAccountId: text("providerAccountId").notNull(),
   refresh_token: text("refresh_token"),

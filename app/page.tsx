@@ -49,7 +49,7 @@ export default function ComingSoon() {
         <div className="center">
           <CountdownTimer targetDate={launchDate} />
           
-          <form action={subscribeToWaitlist} className="notify-form open">
+          <form action={async (formData) => { await subscribeToWaitlist(formData); }} className="notify-form open">
             <input type="email" name="email" placeholder="Enter your email" required />
             <button type="submit">Notify Me</button>
           </form>

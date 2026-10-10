@@ -3,12 +3,9 @@
 import { subscribeToWaitlist } from '@/lib/actions';
 import Link from 'next/link';
 import AnimatedTitle from './AnimatedTitle';
-import CountdownTimer from "./CountdownTimer";
 import SocialLinks from "./SocialLinks";
 
 export default function ComingSoon() {
-  const launchDate = process.env.NEXT_PUBLIC_LAUNCH_DATE || "2026-12-31T00:00:00";
-
   return (
     <div className="landing-body">
       
@@ -47,7 +44,16 @@ export default function ComingSoon() {
         <div className="shade-bottom"></div>
                 
         <div className="center">
-          <CountdownTimer targetDate={launchDate} />
+          
+          {/* New Text Replacing the Timer */}
+          <div style={{ marginBottom: '24px', textAlign: 'center', color: '#ffffff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+            <h2 style={{ fontSize: '2.2rem', fontWeight: '700', margin: '0 0 4px 0', letterSpacing: '-0.02em' }}>
+              aneakajun.com
+            </h2>
+            <p style={{ fontSize: '1.2rem', fontStyle: 'italic', margin: '0', opacity: 0.9 }}>
+              diaspora re-rooted.
+            </p>
+          </div>
           
           <form action={async (formData) => { await subscribeToWaitlist(formData); }} className="notify-form open">
             <input type="email" name="email" placeholder="Enter your email" required />

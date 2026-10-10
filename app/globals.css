@@ -145,26 +145,27 @@ footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,25
 @media (max-width: 768px) {
   .notify-form {
     flex-direction: column !important;
-    gap: 16px !important;
+    gap: 12px !important;
     width: 100% !important;
-    max-width: 320px !important;
+    max-width: 240px !important; /* Shrunk from 320px to leave room for social icons */
     margin: 0 auto !important;
-    align-items: center !important; /* Prevents flex stretching */
+    align-items: center !important; 
   }
   
   .notify-form input,
   .notify-form button {
     width: 100% !important;
-    height: 50px !important;       /* Forces standard height */
-    min-height: 50px !important;   /* Locks the height */
-    max-height: 50px !important;   /* Prevents the giant oval bug */
+    height: 44px !important;       /* Shrunk height for a more compact look */
+    min-height: 44px !important;   
+    max-height: 44px !important;   
     padding: 0 20px !important;
-    border-radius: 25px !important; /* Perfect pill shape */
+    border-radius: 25px !important; 
     box-sizing: border-box !important;
     line-height: normal !important;
+    font-size: 0.85rem !important; /* Slightly smaller text to fit the new box */
   }
 }
-
+/* 3. Social Links Container */
 /* 3. Social Links Container */
 .social-floating {
   display: flex;
@@ -176,14 +177,15 @@ footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,25
 }
 @media (max-width: 768px) {
   .social-floating {
-    right: 50%;
-    transform: translateX(50%); /* Centers icons at the bottom of the screen */
-    bottom: 20px;
-    gap: 20px;
+    right: 20px;             /* Pins to the right side */
+    bottom: 24px;            /* Pins to the bottom */
+    transform: none;         /* Removes the centering rule */
+    flex-direction: column;  /* Stacks the icons neatly in the corner */
+    gap: 16px;
   }
   .social-floating svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -228,5 +230,15 @@ footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,25
     font-size: 14vw !important; /* Scales text smoothly based on screen width */
     line-height: 1.1 !important;
     white-space: nowrap !important; /* Stops text from wrapping/squishing */
+  }
+}
+/* 6. Hero Text Fix */
+@media (max-width: 768px) {
+  .center h2 {
+    font-size: 10vw !important;       /* Scales text down smoothly based on screen width */
+    white-space: nowrap !important;   /* Prevents the text from breaking into two lines */
+  }
+  .center p {
+    font-size: 4.5vw !important;      /* Scales the tagline down */
   }
 }

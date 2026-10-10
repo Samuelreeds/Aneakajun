@@ -49,12 +49,21 @@ export default function AuthPage() {
   return (
     <div className="auth-body">
       <div className="page">
-        {/* Left: art + quote */}
-        <aside className="art">
-          <Link href="/" className="brand">
-            <svg viewBox="0 0 24 24"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
+                {/* Left: art + quote */}
+                <aside className="art">
+        <Link href="/" className="brand">
+            <img 
+                src="/logo.jpg" 
+                alt="Aneakajun Logo" 
+                style={{ 
+                width: '24px', 
+                height: '24px', 
+                borderRadius: '50%', 
+                objectFit: 'cover' 
+                }} 
+            />
             Aneakajun
-          </Link>
+        </Link>
           <blockquote className="quote">
             &ldquo;We're building something new for you. Create your account today and be the first one inside when we launch.&rdquo;
             <footer>The Aneakajun Team</footer>
@@ -64,9 +73,18 @@ export default function AuthPage() {
         {/* Right: form */}
         <main className="panel">
           <Link href="/" className="brand mobile-brand">
-            <svg viewBox="0 0 24 24"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
+            <img 
+                src="/logo.jpg" 
+                alt="Aneakajun Logo" 
+                style={{ 
+                width: '24px', 
+                height: '24px', 
+                borderRadius: '50%', 
+                objectFit: 'cover' 
+                }} 
+            />
             Aneakajun
-          </Link>
+            </Link>
           <button className="top-link" type="button" onClick={() => {
             setIsLogin(!isLogin);
             setError("");

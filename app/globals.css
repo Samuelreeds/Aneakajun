@@ -2,6 +2,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
 /* ---------- AUTHENTICATION PAGE STYLES ---------- */
 .auth-body { 
   --ink: #0f0f10; 
@@ -49,7 +50,7 @@ html { scroll-behavior: smooth; }
 .auth-body .box { width: 100%; max-width: 350px; text-align: center; }
 .auth-body h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 8px; }
 .auth-body .sub { color: var(--muted); font-size: .88rem; margin-bottom: 24px; }
-.auth-body .field { width: 100%; height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: .88rem; color: var(--ink); background: #fff; outline: none; transition: .15s; }
+.auth-body .field { width: 100%; height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: .88rem; color: var(--ink); background: #fff; outline: none; transition: .15s; margin-bottom: 10px; }
 .auth-body .field::placeholder { color: #a1a1aa; }
 .auth-body .field:focus { border-color: #a1a1aa; box-shadow: 0 0 0 3px rgba(24,24,27,.08); }
 .auth-body .btn { width: 100%; height: 40px; border-radius: 8px; font: inherit; font-size: .88rem; font-weight: 600; cursor: pointer; transition: .15s; display: flex; align-items: center; justify-content: center; gap: 10px; }
@@ -70,6 +71,7 @@ html { scroll-behavior: smooth; }
   .auth-body .art { display: none; }
   .auth-body .mobile-brand { display: inline-flex; }
 }
+
 /* =========================================
    COMING SOON PAGE STYLES
 ========================================= */
@@ -115,30 +117,116 @@ html { scroll-behavior: smooth; }
 footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,255,.45); background:#070c20; }
 
 /* =========================================
-   AUTH PAGE STYLES
-========================================= */
-.auth-body {
-  --ink:#0f0f10; --auth-muted:#71717a; --line:#e4e4e7;
-  font-family:"Plus Jakarta Sans",Inter,system-ui,sans-serif; color:var(--ink); background:#fff; min-height:100vh;
-}
-.page { display:grid; grid-template-columns:1fr 1fr; min-height:100vh; }
-.art { position:relative; overflow:hidden; color:#fff; display:flex; flex-direction:column; justify-content:space-between; padding:28px 32px; isolation:isolate; background:#160b07; background-image: linear-gradient(to bottom, rgba(10,4,3,0) 50%, rgba(18,5,4,.75) 100%), radial-gradient(ellipse 70% 34% at 62% 33%, rgba(168,178,186,.95) 0%, rgba(150,158,166,.8) 38%, rgba(120,126,134,0) 100%), radial-gradient(ellipse 95% 42% at 38% 64%, #f6a331 0%, #ea7d1f 38%, rgba(222,98,28,0) 100%), radial-gradient(ellipse 110% 38% at 55% 98%, #b9362b 0%, rgba(150,40,30,0) 100%), radial-gradient(ellipse 38% 26% at 0% 46%, rgba(10,8,7,.92) 0%, rgba(10,8,7,0) 100%), linear-gradient(122deg, #0a0807 0%, #0a0807 24%, rgba(10,8,7,0) 52%); }
-.brand { display:inline-flex; align-items:center; gap:10px; color:inherit; text-decoration:none; font-weight:500; font-size:1.05rem; }
-.brand svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-.quote { max-width:430px; font-size:1rem; line-height:1.55; text-shadow:0 1px 12px rgba(0,0,0,.35); }
-.quote footer { margin-top:8px; font-size:.88rem; opacity:.85; }
-.panel { position:relative; display:grid; place-items:center; padding:90px 24px 60px; }
-.box { width:100%; max-width:350px; text-align:center; }
-.box h1 { font-size:1.5rem; font-weight:600; letter-spacing:-.02em; margin-bottom:8px; }
-.sub { color:var(--auth-muted); font-size:.88rem; margin-bottom:24px; }
-.field { width:100%; height:40px; padding:0 12px; border:1px solid var(--line); border-radius:8px; font:inherit; font-size:.88rem; color:var(--ink); background:#fff; outline:none; transition:.15s; margin-bottom:10px;}
-.btn { width:100%; height:40px; border-radius:8px; font:inherit; font-size:.88rem; font-weight:600; cursor:pointer; transition:.15s; display:flex; align-items:center; justify-content:center; gap:10px; }
-.btn-dark { background:#18181b; color:#fff; border:1px solid #18181b; }
-.btn-line { background:#fff; color:var(--ink); border:1px solid var(--line); font-weight:500; }
-.or { display:flex; align-items:center; gap:12px; margin:22px 0; color:var(--auth-muted); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; }
-.or::before, .or::after { content:""; flex:1; height:1px; background:var(--line); }
+   MOBILE RESPONSIVENESS FIXES
+   ========================================= */
 
-@media (max-width:900px){
-  .page { grid-template-columns:1fr; }
-  .art { display:none; }
+/* 1. Header & Navigation */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 20px !important;
+  }
+  .nav-links {
+    display: none !important; /* Hides "Home" and "About" to prevent overlap */
+  }
+  .nav-actions {
+    gap: 10px !important;
+  }
+  .nav-actions a {
+    padding: 8px 14px !important;
+    font-size: 0.85rem !important;
+  }
+  .logo img {
+    height: 44px !important;
+    width: 44px !important;
+  }
+}
+
+/* 2. Email Form Fixes */
+@media (max-width: 768px) {
+  .notify-form {
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    align-items: center !important; /* Prevents flex stretching */
+  }
+  
+  .notify-form input,
+  .notify-form button {
+    width: 100% !important;
+    height: 50px !important;       /* Forces standard height */
+    min-height: 50px !important;   /* Locks the height */
+    max-height: 50px !important;   /* Prevents the giant oval bug */
+    padding: 0 20px !important;
+    border-radius: 25px !important; /* Perfect pill shape */
+    box-sizing: border-box !important;
+    line-height: normal !important;
+  }
+}
+
+/* 3. Social Links Container */
+.social-floating {
+  display: flex;
+  gap: 24px;
+  position: fixed;
+  bottom: 32px;
+  right: 48px;
+  z-index: 9999;
+}
+@media (max-width: 768px) {
+  .social-floating {
+    right: 50%;
+    transform: translateX(50%); /* Centers icons at the bottom of the screen */
+    bottom: 20px;
+    gap: 20px;
+  }
+  .social-floating svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* 4. Countdown Timer */
+.countdown-pill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  gap: 16px;
+  color: #fff;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  z-index: 10;
+  position: relative;
+  background: rgba(20, 14, 10, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 16px 32px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.countdown-pill .num { font-size: 1.75rem; font-weight: 600; }
+.countdown-pill .lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; }
+.countdown-pill .colon { font-size: 1.75rem; font-weight: 600; opacity: 0.3; }
+
+@media (max-width: 768px) {
+  .countdown-pill {
+    padding: 12px 20px;
+    gap: 10px;
+  }
+  .countdown-pill .num { font-size: 1.25rem; }
+  .countdown-pill .lbl { font-size: 0.55rem; letter-spacing: 1px; }
+  .countdown-pill .colon { font-size: 1.25rem; }
+}
+
+/* 5. Animated Title Fix */
+@media (max-width: 768px) {
+  .hero h1, 
+  .hero h2,
+  .animated-title-container { /* Targets your AnimatedTitle component */
+    font-size: 14vw !important; /* Scales text smoothly based on screen width */
+    line-height: 1.1 !important;
+    white-space: nowrap !important; /* Stops text from wrapping/squishing */
+  }
 }

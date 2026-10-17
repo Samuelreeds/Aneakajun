@@ -117,6 +117,242 @@ html { scroll-behavior: smooth; }
 footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,255,.45); background:#070c20; }
 
 /* =========================================
+   PLAN YOUR RETURN SECTION
+========================================= */
+.plan-return-section {
+  background-color: #0c1e19;
+  padding: 120px 6vw 100px;
+  position: relative;
+  z-index: 20;
+  color: #fff;
+}
+
+.plan-return-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.plan-return-left {
+  position: sticky;
+  top: 130px;
+}
+
+.plan-return-title {
+  color: #7ed4c6;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.plan-return-subtitle {
+  color: #d1e6e0;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  line-height: 1.5;
+  font-weight: 400;
+  max-width: 440px;
+}
+
+.plan-return-right {
+  width: 100%;
+}
+
+.plan-return-card {
+  background: #142f28;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.plan-field-group {
+  margin-bottom: 24px;
+}
+
+.plan-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e5f2ed;
+  margin-bottom: 10px;
+}
+
+.plan-input,
+.plan-textarea {
+  width: 100%;
+  background: #0d221d;
+  border: 1px solid #234c41;
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.plan-input::placeholder,
+.plan-textarea::placeholder {
+  color: #638a80;
+}
+
+.plan-input:focus,
+.plan-textarea:focus {
+  border-color: #55bba9;
+  box-shadow: 0 0 0 3px rgba(85, 187, 169, 0.15);
+}
+
+.plan-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.plan-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-option-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1d3c33;
+  border: 1px solid #294f44;
+  border-radius: 6px;
+  padding: 12px 16px;
+  cursor: pointer;
+  color: #dbebe6;
+  font-size: 0.92rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+.plan-option-row:hover {
+  background: #254b40;
+  border-color: #356357;
+}
+
+.plan-option-row.active {
+  background: #234f43;
+  border-color: #55bba9;
+  color: #ffffff;
+}
+
+.plan-option-row input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plan-check-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #5a8a7e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #0f241f;
+  transition: all 0.15s ease;
+}
+
+.plan-option-row.active .plan-check-box {
+  background: #55bba9;
+  border-color: #55bba9;
+}
+
+.plan-check-box svg {
+  width: 12px;
+  height: 12px;
+  stroke: #0d221d;
+  stroke-width: 2.5;
+  fill: none;
+  display: none;
+}
+
+.plan-option-row.active .plan-check-box svg {
+  display: block;
+}
+
+.plan-submit-btn {
+  width: 100%;
+  height: 48px;
+  background: #ede6dc;
+  color: #0e1e1a;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.plan-submit-btn:hover:not(:disabled) {
+  background: #f7f1e8;
+}
+
+.plan-submit-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.plan-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.plan-disclaimer {
+  text-align: center;
+  font-size: 0.74rem;
+  color: #6d9389;
+  margin-top: 14px;
+}
+
+.plan-msg {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.plan-msg.success {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #4ade80;
+}
+
+.plan-msg.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
+
+@media (max-width: 960px) {
+  .plan-return-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .plan-return-left {
+    position: static;
+  }
+  .plan-return-card {
+    padding: 24px 18px;
+  }
+  .plan-return-section {
+    padding: 80px 5vw 60px;
+  }
+}
+
+/* =========================================
    MOBILE RESPONSIVENESS FIXES
    ========================================= */
 
@@ -165,7 +401,7 @@ footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,25
     font-size: 0.85rem !important; /* Slightly smaller text to fit the new box */
   }
 }
-/* 3. Social Links Container */
+
 /* 3. Social Links Container */
 .social-floating {
   display: flex;
@@ -232,6 +468,7 @@ footer { padding:26px; text-align:center; font-size:.8rem; color:rgba(255,255,25
     white-space: nowrap !important; /* Stops text from wrapping/squishing */
   }
 }
+
 /* 6. Hero Text Fix */
 @media (max-width: 768px) {
   .center h2 {

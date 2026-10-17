@@ -1,12 +1,25 @@
 import { pgTable, serial, text, timestamp, boolean, primaryKey, integer } from "drizzle-orm/pg-core";
 
-
 // Waitlist Table: Stores email submissions from the coming-soon page.
 // The email column has a unique constraint to prevent duplicate subscriptions.
 export const waitlist = pgTable("waitlist", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
   status: text("status").notNull().default("subscribed"), // 'subscribed', 'unsubscribed'
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Return Plans Table: Stores submissions from the "Plan your return" section.
+export const returnPlans = pgTable("return_plans", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  currentLocation: text("current_location").notNull(),
+  cambodiaConnection: text("cambodia_connection").notNull(),
+  durationMonths: text("duration_months"),
+  plansDescription: text("plans_description").notNull(),
+  interests: text("interests"), // JSON string array of selected interests
+  biggestConcern: text("biggest_concern"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

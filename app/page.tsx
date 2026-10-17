@@ -74,6 +74,14 @@ export default function ComingSoon() {
           <Link href="#plan">Plan your return</Link>
         </nav>
         <div className="nav-actions">
+          <a 
+            href="https://aneakajun.substack.com/p/aneakajuncom-launches-on-founders" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="login"
+          >
+            Learn More
+          </a>
           <Link href="/auth#login" className="login">
             Log in
           </Link>

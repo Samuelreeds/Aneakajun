@@ -6,10 +6,8 @@ import { eq } from "drizzle-orm"
 import bcrypt from "bcryptjs"
 
 export async function registerUser(formData: FormData) {
-  // Normalize to lowercase
   const email = (formData.get("email") as string)?.toLowerCase();
   const password = formData.get("password") as string;
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!email || !emailRegex.test(email) || !password || password.length < 6) {
@@ -18,17 +16,9 @@ export async function registerUser(formData: FormData) {
 
   try {
     const [existingUser] = await db.select().from(users).where(eq(users.email, email));
-    if (existingUser) {
-      return { error: "Email already in use." };
-    }
-
+    if (existingUser) return { error: "Email already in use." };
     const hashedPassword = await bcrypt.hash(password, 10);
-    
-    await db.insert(users).values({
-      email,
-      password: hashedPassword,
-    });
-
+    await db.insert(users).values({ email, password: hashedPassword });
     return { success: "Account created! You can now log in." };
   } catch (error) {
     console.error("Registration Error:", error);
@@ -36,21 +26,14 @@ export async function registerUser(formData: FormData) {
   }
 }
 
-// Action: Subscribe an email to the waitlist
 export async function subscribeToWaitlist(formData: FormData) {
   const email = formData.get("email") as string;
-
-  if (!email || !email.includes("@")) {
-    return { error: "Please enter a valid email address." };
-  }
+  if (!email || !email.includes("@")) return { error: "Please enter a valid email address." };
 
   try {
-    // Insert the email into the Neon database
     await db.insert(waitlist).values({ email });
-    
     return { success: "You've been added to the waitlist!" };
   } catch (error: any) {
-    // Handle Postgres Unique Constraint Violation (Error code 23505)
     if (error.code === '23505' || (error.message && error.message.includes('unique'))) {
       return { error: "You are already on the waitlist!" };
     }
@@ -65,6 +48,10 @@ export async function submitReturnPlan(formData: FormData) {
   const email = (formData.get("email") as string)?.trim()?.toLowerCase();
   const currentLocation = (formData.get("currentLocation") as string)?.trim();
   const cambodiaConnection = formData.get("cambodiaConnection") as string;
+  
+  // New Field Extraction
+  const plannedArrivalDate = (formData.get("plannedArrivalDate") as string)?.trim();
+  
   const durationMonths = (formData.get("durationMonths") as string)?.trim();
   const plansDescription = formData.get("plansDescription") as string;
   const interests = formData.getAll("interests") as string[];
@@ -85,6 +72,7 @@ export async function submitReturnPlan(formData: FormData) {
       email,
       currentLocation,
       cambodiaConnection,
+      plannedArrivalDate: plannedArrivalDate || null, // NEW FIELD INSERTION
       durationMonths: durationMonths || null,
       plansDescription,
       interests: interests.length > 0 ? JSON.stringify(interests) : null,

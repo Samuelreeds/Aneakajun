@@ -1,29 +1,29 @@
 import { pgTable, serial, text, timestamp, boolean, primaryKey, integer } from "drizzle-orm/pg-core";
 
-// Waitlist Table: Stores email submissions from the coming-soon page.
-// The email column has a unique constraint to prevent duplicate subscriptions.
+// Waitlist Table
 export const waitlist = pgTable("waitlist", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
-  status: text("status").notNull().default("subscribed"), // 'subscribed', 'unsubscribed'
+  status: text("status").notNull().default("subscribed"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Return Plans Table: Stores submissions from the "Plan your return" section.
+// Return Plans Table
 export const returnPlans = pgTable("return_plans", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
   currentLocation: text("current_location").notNull(),
   cambodiaConnection: text("cambodia_connection").notNull(),
+  plannedArrivalDate: text("planned_arrival_date"), // NEW FIELD ADDED
   durationMonths: text("duration_months"),
   plansDescription: text("plans_description").notNull(),
-  interests: text("interests"), // JSON string array of selected interests
+  interests: text("interests"), 
   biggestConcern: text("biggest_concern"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Auth.js Users Table: Managed by the auth provider.
+// Auth.js Users Table
 export const users = pgTable("user", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
@@ -33,7 +33,7 @@ export const users = pgTable("user", {
   password: text("password"),
 });
 
-// Auth.js Accounts Table: Links OAuth accounts (Google) to users.
+// Auth.js Accounts Table
 export const accounts = pgTable("account", {
   userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
   type: text("type").notNull(),
@@ -50,7 +50,7 @@ export const accounts = pgTable("account", {
   compoundKey: primaryKey({ columns: [account.provider, account.providerAccountId] }),
 }));
 
-// Auth.js Verification Tokens Table: Used for passwordless magic links.
+// Auth.js Verification Tokens Table
 export const verificationTokens = pgTable("verificationToken", {
   identifier: text("identifier").notNull(),
   token: text("token").notNull(),

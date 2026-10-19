@@ -79,6 +79,7 @@ export default function ComingSoon() {
             target="_blank" 
             rel="noopener noreferrer" 
             className="login"
+            style={{ marginRight: "4px" }}
           >
             Learn More
           </a>
@@ -238,6 +239,19 @@ export default function ComingSoon() {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* NEW FIELD: Planned Arrival Date */}
+                <div className="plan-field-group">
+                  <label className="plan-label" htmlFor="plannedArrivalDate">
+                    When are you planning to come to Cambodia? (Please provide a specific date or an approximate timeframe, if known.)
+                  </label>
+                  <input
+                    id="plannedArrivalDate"
+                    name="plannedArrivalDate"
+                    type="text"
+                    className="plan-input"
+                  />
                 </div>
 
                 {/* How long do you plan to be in Cambodia for? */}

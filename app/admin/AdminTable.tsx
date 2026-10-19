@@ -107,8 +107,11 @@ export default function AdminTable({ submissions, adminEmail }: { submissions: a
 
               <div>
                 <span style={{ display: "block", fontSize: "0.75rem", color: "#638a80", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "6px" }}>Current Status & Connection</span>
-                <div style={{ color: "#dbebe6", background: "#0d221d", padding: "16px", borderRadius: "8px", border: "1px solid #1d3c33" }}>
-                  Living in <strong>{selectedSub.currentLocation}</strong> • Identifies as <strong>{selectedSub.cambodiaConnection}</strong> • Planning for <strong>{selectedSub.durationMonths ? `${selectedSub.durationMonths} months` : "Unspecified duration"}</strong>.
+                <div style={{ color: "#dbebe6", background: "#0d221d", padding: "16px", borderRadius: "8px", border: "1px solid #1d3c33", lineHeight: "1.5" }}>
+                  Living in <strong>{selectedSub.currentLocation}</strong> • Identifies as <strong>{selectedSub.cambodiaConnection}</strong> <br/>
+                  <span style={{ display: "inline-block", marginTop: "8px" }}>
+                    Planning to arrive: <strong style={{ color: "#7ed4c6" }}>{selectedSub.plannedArrivalDate || "Not specified"}</strong> • Duration: <strong>{selectedSub.durationMonths ? `${selectedSub.durationMonths} months` : "Unspecified"}</strong>
+                  </span>
                 </div>
               </div>
 
